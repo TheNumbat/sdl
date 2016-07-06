@@ -12,6 +12,8 @@ float zoom = win.getZoom();
 bool** region;
 
 void floodfill4_rec(int x, int y) {
+	win.updateEvents();
+
 	region[x][y] = true;
 
 	win.setColor(0,0,255,255);
@@ -26,7 +28,10 @@ void floodfill4_rec(int x, int y) {
 }
 
 void floodfill8_rec(int x, int y) {
+	win.updateEvents();
+
 	region[x][y] = true;
+
 	win.setColor(0,0,255,255);
 	win.drawRect(rect(2*(x-(SIZE/2))/zoom,2*(y-(SIZE/2))/zoom,zoom/(SIZE/2),zoom/(SIZE/2),true));
 	win.show();
@@ -45,6 +50,8 @@ void floodfill8_rec(int x, int y) {
 }
 
 void floodfill4_stack(int x, int y) {
+	win.updateEvents();
+
 	struct pt {
 		pt(int _x, int _y) {x=_x;y=_y;}
 		int x, y;
@@ -81,6 +88,8 @@ void floodfill4_stack(int x, int y) {
 }
 
 void floodfill4_queue(int x, int y) {
+	win.updateEvents();
+
 	struct pt {
 		pt(int _x, int _y) {x=_x;y=_y;}
 		int x, y;

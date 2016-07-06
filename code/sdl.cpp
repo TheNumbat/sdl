@@ -66,6 +66,10 @@ void SDL::clear() {
 	if(axes) drawAxes();
 }
 
+void SDL::updateEvents() {
+	SDL_PumpEvents();
+}
+
 void SDL::show() {
 	SDL_RenderPresent((SDL_Renderer*)renderer);
 }
