@@ -21,6 +21,7 @@ SDL::SDL(std::string wName, int wW, int wH) {
 }
 
 SDL::~SDL() {
+	SDL_DestroyRenderer((SDL_Renderer*)renderer);
 	SDL_DestroyWindow((SDL_Window*)win);
 	for(shape* s : shapes)
 		delete s;
