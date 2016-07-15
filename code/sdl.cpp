@@ -91,6 +91,12 @@ void SDL::drawLine(line l) {
 						std::round(l.x2*(w/2)/zoom) + (w/2),std::round(l.y2*(h/2)/zoom) + (h/2));
 }
 
+void SDL::drawLines(std::vector<line> lines) {
+	for(line l : lines) {
+		drawLine(l);
+	}
+}
+
 void SDL::drawPoint(point p) {
 	shapes.push_back(new point(p));
 	SDL_RenderDrawPoint((SDL_Renderer*)renderer,std::round(p.x*(w/2)/zoom) + (w/2),std::round(p.y*(h/2)/zoom) + (h/2));
@@ -98,7 +104,6 @@ void SDL::drawPoint(point p) {
 
 void SDL::drawPoints(std::vector<point> points) {
 	for(point p : points) {
-		shapes.push_back(new point(p));
 		drawPoint(p);
 	}
 }
@@ -117,8 +122,7 @@ void SDL::drawRect(rect r) {
 }
 
 void SDL::drawRects(std::vector<rect> rects) {
-	for(rect r : rects) { 
-		shapes.push_back(new rect(r));
+	for(rect r : rects) {
 		drawRect(r);
 	}
 }
