@@ -6,13 +6,12 @@
 
 const int SIZE = 100;
 
-SDL win("test",1280,720);
+SDL win("test",640,480);
 float zoom = win.getZoom();
 
 bool** region;
 
 void floodfill4_rec(int x, int y) {
-	win.updateEvents();
 
 	region[x][y] = true;
 
@@ -28,7 +27,6 @@ void floodfill4_rec(int x, int y) {
 }
 
 void floodfill8_rec(int x, int y) {
-	win.updateEvents();
 
 	region[x][y] = true;
 
@@ -50,7 +48,6 @@ void floodfill8_rec(int x, int y) {
 }
 
 void floodfill4_stack(int x, int y) {
-	win.updateEvents();
 
 	struct pt {
 		pt(int _x, int _y) {x=_x;y=_y;}
@@ -88,7 +85,6 @@ void floodfill4_stack(int x, int y) {
 }
 
 void floodfill4_queue(int x, int y) {
-	win.updateEvents();
 
 	struct pt {
 		pt(int _x, int _y) {x=_x;y=_y;}
@@ -142,17 +138,31 @@ int main() {
 	win.clear();
 	clearRegion();
 
+	if(!win.updateEvents()) {
+		return 0;
+	}
+
 	floodfill8_rec(SIZE/2,SIZE/2);
 	win.clear();
 	clearRegion();
+
+	if(!win.updateEvents()) {
+		return 0;
+	}
 	
 	floodfill4_stack(SIZE/2,SIZE/2);
 	win.clear();
 	clearRegion();
 	
+	if(!win.updateEvents()) {
+		return 0;
+	}
+
 	floodfill4_queue(SIZE/2,SIZE/2);
 	win.clear();
 	clearRegion();
+
+	while(win.updateEvents());
 
 	for(int i = 0; i < SIZE; i++)
 		delete[] region[i];

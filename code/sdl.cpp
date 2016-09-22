@@ -67,8 +67,12 @@ void SDL::clear() {
 	if(axes) drawAxes();
 }
 
-void SDL::updateEvents() {
-	SDL_PumpEvents();
+bool SDL::updateEvents() {
+	SDL_Event ev;
+	while(SDL_PollEvent(&ev)) {
+		if(ev.type == SDL_QUIT) return false;
+	}
+	return true;
 }
 
 void SDL::show() {
