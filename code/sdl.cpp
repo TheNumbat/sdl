@@ -52,6 +52,7 @@ void SDL::redraw() {
 		if(point* p = dynamic_cast<point*>(s)) drawPoint(*p);
 		else if(line* l = dynamic_cast<line*>(s)) drawLine(*l);
 		else if(rect* r = dynamic_cast<rect*>(s)) drawRect(*r);
+		delete shapes.back();
 		shapes.pop_back();
 	}
 }
